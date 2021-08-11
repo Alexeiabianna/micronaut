@@ -35,15 +35,14 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.micronaut:micronaut-validation")
-    runtimeOnly("com.h2database:h2")
+//    runtimeOnly("com.h2database:h2")
 
     // JPA
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
-//    implementation("org.postgresql:postgresql:42.2.18")
+    implementation("org.postgresql:postgresql:42.2.18")
 
 }
-
 
 application {
     mainClass.set("br.com.zup.ApplicationKt")
