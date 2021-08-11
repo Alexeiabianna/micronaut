@@ -8,10 +8,13 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/autor")
-class CadastraNovoAutorController {
+class CadastraNovoAutorController(val autorRepository: AutorRepository) {
 
     @Post
     fun cadastra (@Body @Valid request: NovoAutorRequest) {
-        println(request)
+        println("Request => $request")
+        val autor = request.toModel()
+        println("Model => ${autor.nome}")
+        autorRepository.save(autor)
     }
 }
