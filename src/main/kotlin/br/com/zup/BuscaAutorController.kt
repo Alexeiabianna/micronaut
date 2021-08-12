@@ -5,7 +5,7 @@ import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.QueryValue
 
-@Controller("/autor")
+@Controller("/autor/get")
 class BuscaAutorController(val autorRepository: AutorRepository) {
 
     @Get
@@ -16,11 +16,12 @@ class BuscaAutorController(val autorRepository: AutorRepository) {
 
             return HttpResponse.ok(resposta)
         }
-        val optionalAutor = autorRepository.findByEmail(email)
-        if(optionalAutor.isEmpty) {
+        //val optionalAutor = autorRepository.findByEmail(email)
+        val possivelAutor = autorRepository.buscaPorEmail(email)
+        if(possivelAutor.isEmpty) {
             return HttpResponse.notFound()
         }
-        val autor = optionalAutor.get()
+        val autor = possivelAutor.get()
 
         return HttpResponse.ok(DetalhesAutoresDto(autor))
     }
