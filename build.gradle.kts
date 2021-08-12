@@ -23,6 +23,9 @@ micronaut {
         incremental(true)
         annotations("br.com.zup.*")
     }
+    allOpen {
+        annotation("io.micronaut.http.annotation.Controller")
+    }
 }
 
 dependencies {
