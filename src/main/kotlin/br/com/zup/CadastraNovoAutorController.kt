@@ -12,28 +12,23 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/autor")
-class CadastraNovoAutorController(val autorRepository: AutorRepository) {
+class CadastraNovoAutorController(val autorRepository: AutorRepository,
+                                  val enderecoClient: EnderecoClient) {
 
     @Post
     @Transactional
     fun cadastra (@Body @Valid request: NovoAutorRequest): HttpResponse<Any> {
         println("Request => $request")
-        val autor = request.toModel()
-        println("Model => ${autor.nome}")
+        val enderecoResponse = enderecoClient.consulta(request.cep)
+
+        val autor = request.toModel(enderecoResponse.body()!!)
+
+        println("Model => ${autor.nome}, ${autor.endereco.rua}")
         autorRepository.save(autor)
 
         val uri = UriBuilder.of("/autor/{id}")
             .expand(mutableMapOf(Pair("id", autor.id)))
 
         return HttpResponse.created(uri)
-    }
-
-    @Get
-    fun lista(): HttpResponse<List<DetalhesAutoresDto>> {
-        val autores = autorRepository.findAll()
-
-        val resposta = autores.map { autor -> DetalhesAutoresDto(autor) }
-
-        return HttpResponse.ok(resposta)
     }
 }

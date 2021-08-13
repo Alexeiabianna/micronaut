@@ -9,10 +9,13 @@ import javax.validation.constraints.Size
 data class NovoAutorRequest(
     @field:NotBlank val nome: String,
     @field:NotBlank @field:Email val email: String,
-    @field:NotBlank @field:Size(max = 1024) val descricao: String
+    @field:NotBlank @field:Size(max = 1024) val descricao: String,
+    @field:NotBlank var cep: String,
+    @field:NotBlank var numero: String
 ) {
-    fun toModel(): Autor {
-        return Autor(nome, email, descricao)
+    fun toModel(enderecoResponse: EnderecoResponse): Autor {
+        val endereco = Endereco(enderecoResponse, numero)
+        return Autor(nome, email, descricao, endereco)
     }
 
 }

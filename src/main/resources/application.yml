@@ -22,4 +22,7 @@ jpa:
           auto: update
 #        show_sql: true
 
+clients:
+  cep:
+    url: ${CEP_SERVER_URL:`https://viacep.com.br/ws/`}
 

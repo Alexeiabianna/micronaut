@@ -9,7 +9,8 @@ import javax.persistence.Id
 class Autor(
     val nome: String,
     val email: String,
-    var descricao: String) {
+    var descricao: String,
+    var endereco: Endereco ) {
 
     @Id
     @GeneratedValue
