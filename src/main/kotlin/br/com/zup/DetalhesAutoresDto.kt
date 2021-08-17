@@ -1,7 +1,14 @@
 package br.com.zup
 
-class DetalhesAutoresDto(autor: Autor) {
-    val nome = autor.nome
-    val email = autor.email
-    val descricao = autor.descricao
+class DetalhesAutoresDto(
+    val nome: String,
+    val email: String,
+    val descricao: String,
+) {
+    constructor(autor: Autor) : this(
+        nome = autor.nome,
+        email = autor.email,
+        descricao = autor.descricao
+    )
+
 }

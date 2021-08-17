@@ -15,6 +15,6 @@ class Autor(
     @Id
     @GeneratedValue
     var id: Long? = null
-    val dataCriacao: LocalDateTime = LocalDateTime.now();
+    val dataCriacao: LocalDateTime = LocalDateTime.now()
 
 }

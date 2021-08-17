@@ -47,6 +47,9 @@ dependencies {
     implementation("org.postgresql:postgresql:42.2.18")
 
     implementation("io.micronaut.xml:micronaut-jackson-xml")
+
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+
 }
 
 application {
